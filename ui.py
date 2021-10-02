@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.newDog = QWidget()
         self.newDog.setObjectName(u"newDog")
         self.newDog.setStyleSheet(u"QPushButton {\n"
-"    background-color: #6ECB63;\n"
+"    background-color: #4BA641;\n"
 "    width: 100px;\n"
 "    border: none;\n"
 "    border-radius: 15px;\n"
@@ -163,7 +163,7 @@ class Ui_MainWindow(object):
         self.newDogByParents = QWidget()
         self.newDogByParents.setObjectName(u"newDogByParents")
         self.newDogByParents.setStyleSheet(u"QPushButton {\n"
-"    background-color: #6ECB63;\n"
+"    background-color: #4BA641;\n"
 "    width: 100px;\n"
 "    border: none;\n"
 "    border-radius: 15px;\n"
@@ -226,8 +226,10 @@ class Ui_MainWindow(object):
         self.dogs_list = QListWidget(self.myDogs)
         self.dogs_list.setObjectName(u"dogs_list")
         self.dogs_list.setGeometry(QRect(0, 0, 591, 371))
+        self.dogs_list.setStyleSheet(u"* {\n"
+"border: 2px black\n"
+"}")
         self.tabWidget.addTab(self.myDogs, "")
-        MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
 

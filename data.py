@@ -1,6 +1,6 @@
 import sqlite3
 
-con = sqlite3.connect("sobaki.db")
+con = sqlite3.connect("dogs.db")
 cur = con.cursor()
 last_id = 1
 

@@ -42,7 +42,7 @@ QScrollArea QWidget {
     <widget class="QWidget" name="newDog">
      <property name="styleSheet">
       <string notr="true">QPushButton {
-    background-color: #6ECB63;
+    background-color: #4BA641;
     width: 100px;
     border: none;
     border-radius: 15px;
@@ -244,7 +244,7 @@ border-radius: 20%;
     <widget class="QWidget" name="newDogByParents">
      <property name="styleSheet">
       <string notr="true">QPushButton {
-    background-color: #6ECB63;
+    background-color: #4BA641;
     width: 100px;
     border: none;
     border-radius: 15px;
@@ -408,6 +408,11 @@ QFrame[objectName=borderFrame], QFrame[objectName=borderFrame_2] {
         <width>591</width>
         <height>371</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">* {
+border: 2px black
+}</string>
       </property>
      </widget>
     </widget>

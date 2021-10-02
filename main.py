@@ -6,7 +6,7 @@ import sys
 import random
 import os
 
-os.remove("sobaki.db")
+os.remove("dogs.db")
 
 import data
 
@@ -29,10 +29,6 @@ data.z()
 import math
 
 pogr = 0.005
-
-table = data.vv()
-print(table)
-
 
 def ozenka(char1,charn):
 	k=0
@@ -65,6 +61,7 @@ def ifrod(sob1,sob2):
 
 
 def search(char):
+	table=data.vv()
 	table2=[]
 	klm=[]
 
@@ -73,6 +70,7 @@ def search(char):
 	tekm2={}
 	while vos:
 		if l>=3:
+			l="Вывести такую породу займёт неоправданно много времени или это невозможно."
 			break
 		for i in range(len(table)):
 			for j in range(len(table)):
@@ -98,16 +96,18 @@ def search(char):
 	rodich=[]
 	print(tekm2)
 
-	def rod(tek):
+	def rod(tek,lid):
 		try:
 			print(tek)
 			if tek['roditeli']:
+				a=tek['roditeli']
+				a.append(lid)
 				rodich.append(tek['roditeli'])
-				rod(table[tek['roditeli'][0]])
-				rod(table[tek['roditeli'][1]])
+				rod(table[tek['roditeli'][0]],tek['roditeli'][0])
+				rod(table[tek['roditeli'][1]],tek['roditeli'][1])
 		except:
 			pass
-	rod(tekm2)
+	rod(tekm2, len(table)-1)
 
 	rodich.reverse()
 	return [rodich, l]
@@ -121,18 +121,23 @@ for i in data.vv():
 	ui.males_list.setItemWidget(QListWidgetItem(ui.males_list), m_choice[i['ind'] - 1])
 	ui.females_list.setItemWidget(QListWidgetItem(ui.females_list), fem_choice[i['ind'] - 1])
 
+
+
 def get_data():
 	ch = [ui.spinBox_first.value() / 1000, ui.spinBox_second.value() / 1000, ui.spinBox_third.value() / 1000, ui.spinBox_fourth.value() / 1000]
 	res = search(ch)
 	msgBox = QMessageBox()
 	msgBox.setIcon(QMessageBox.Information)
-	text = f'''
+	if not(str(res[1]).isdigit()):
+		text = res[1]
+	else:
+		text = f'''
 Чтобы вывести эту породу вам примерно понадобится {res[1]} лет(года)
 И вам надо будет скрестить:
-	'''
+		'''
 	for i in res[0]:
 		text += f'''
-{i[0] + 1} и {i[1] + 1} собаку, тогда получится собака {2 + i[1]}
+{i[0]} и {i[1]} собаку, тогда получится собака {i[2]}
 		'''
 
 	msgBox.setText(text)
