@@ -5,12 +5,7 @@ from ui import Ui_MainWindow
 import sys
 import random
 import os
-
-os.remove("dogs.db")
-
 import data
-
-
 
 app = QApplication(sys.argv)
 Form = QWidget()
@@ -18,7 +13,7 @@ ui = Ui_MainWindow()
 ui.setupUi(Form)
 Form.show()
 
-Qt.setWindowFlags(Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint);
+Form.setFixedSize(Form.size())
 
 data.sd(4)
 

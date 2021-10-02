@@ -20,6 +20,7 @@ def s(slov):
 	x=tuple([13,h[0],h[1],h[2],h[3]]+slov["rd"])
 	b=len(list(cur.execute("pragma table_info(dogs)")))-6
 	y=",".join([f"r{x}" for x in range(b)])
+	print(y)
 	cur.execute(f'insert into dogs (timer,a,b,c,d,{y}) values {str(x)}')
 
 def vv():
