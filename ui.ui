@@ -37,7 +37,7 @@ QScrollArea QWidget {
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="newDog">
      <property name="styleSheet">
@@ -405,7 +405,7 @@ QFrame[objectName=borderFrame], QFrame[objectName=borderFrame_2] {
 	border: none;
     background-color: transparent;
     outline: none;
-	font-size: 30px;
+	font-size: 15px;
 }</string>
      </property>
      <attribute name="title">

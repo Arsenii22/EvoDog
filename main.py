@@ -18,17 +18,19 @@ ui = Ui_MainWindow()
 ui.setupUi(Form)
 Form.show()
 
+Qt.setWindowFlags(Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint);
 
-data.sd(3)
+data.sd(4)
 
 
-data.s({'h':[0.2,0,0,0],'rd':[1,0,0]})
-data.s({'h':[0.3,0,0,0],'rd':[0,1,0]})
-data.s({'h':[0.75,0,0,0],'rd':[0,0,1]})
+data.s({'h':[1,0,1,0],'rd':[1,0,0,0]})
+data.s({'h':[0,1,0,1],'rd':[0,1,0,0]})
+data.s({'h':[1,0,1,0],'rd':[0,0,1,0]})
+data.s({'h':[0,1,0,1],'rd':[0,0,0,1]})
 data.z()
 import math
 
-pogr = 0.005
+pogr = 0.007
 
 def ozenka(char1,charn):
 	k=0
@@ -69,7 +71,7 @@ def search(char):
 	vos=True
 	tekm2={}
 	while vos:
-		if l>=5:
+		if l>=4:
 			l="Вывести такую породу займёт неоправданно много времени или это невозможно."
 			break
 		for i in range(len(table)):
@@ -121,12 +123,20 @@ for i in data.vv():
 	ui.males_list.setItemWidget(QListWidgetItem(ui.males_list), m_choice[i['ind'] - 1])
 	ui.females_list.setItemWidget(QListWidgetItem(ui.females_list), fem_choice[i['ind'] - 1])
 
-all_dogs = []
-for i in data.vv():
-	btn = QPushButton(f"Собака {i['ind'] - 1}")
-	btn.clicked.connect(lambda: get_info(i['ind'] - 1))
-	all_dogs.append(btn)
-	ui.dogs_list.setItemWidget(QListWidgetItem(ui.dogs_list), all_dogs[i['ind'] - 1])
+# Не хватило времени :(
+
+btn0 = QPushButton(f"Собака 0")
+btn0.clicked.connect(lambda: get_info(0))
+btn1 = QPushButton(f"Собака 1")
+btn1.clicked.connect(lambda: get_info(1))
+btn2 = QPushButton(f"Собака 2")
+btn2.clicked.connect(lambda: get_info(2))
+btn3 = QPushButton(f"Собака 3")
+btn3.clicked.connect(lambda: get_info(3))
+
+all_dogs = [btn0, btn1, btn2, btn3]
+for i in all_dogs:
+	ui.dogs_list.setItemWidget(QListWidgetItem(ui.dogs_list), i)
 
 def get_info(id):
 	text = f'''

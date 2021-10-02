@@ -230,7 +230,7 @@ class Ui_MainWindow(object):
 "	border: none;\n"
 "    background-color: transparent;\n"
 "    outline: none;\n"
-"	font-size: 30px;\n"
+"	font-size: 15px;\n"
 "}")
         self.dogs_list = QListWidget(self.myDogs)
         self.dogs_list.setObjectName(u"dogs_list")
@@ -240,7 +240,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
