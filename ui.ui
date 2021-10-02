@@ -296,6 +296,9 @@ QFrame[objectName=borderFrame], QFrame[objectName=borderFrame_2] {
         <height>61</height>
        </rect>
       </property>
+      <property name="whatsThis">
+       <string notr="true"/>
+      </property>
       <property name="text">
        <string>Узнай, какая будет собака от её родителей</string>
       </property>
@@ -397,6 +400,14 @@ QFrame[objectName=borderFrame], QFrame[objectName=borderFrame_2] {
      </widget>
     </widget>
     <widget class="QWidget" name="myDogs">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	border: none;
+    background-color: transparent;
+    outline: none;
+	font-size: 30px;
+}</string>
+     </property>
      <attribute name="title">
       <string>Мои собаки</string>
      </attribute>
@@ -410,9 +421,7 @@ QFrame[objectName=borderFrame], QFrame[objectName=borderFrame_2] {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">* {
-border: 2px black
-}</string>
+       <string notr="true"/>
       </property>
      </widget>
     </widget>

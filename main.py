@@ -53,7 +53,7 @@ def scrst(sob1,sob2):
 def ifrod(sob1,sob2):
 	vos=True
 	for i in range(len(sob1['rd'])):
-		if sob1['rd'][i] > 0.1 and sob2['rd'][i] > 0.1 and math.fabs(sob1['rd'][i]-sob2['rd'][i])<0.1:
+		if sob1['rd'][i] > 0.3 and sob2['rd'][i] > 0.3:
 			
 			vos=False
 			break
@@ -69,7 +69,7 @@ def search(char):
 	vos=True
 	tekm2={}
 	while vos:
-		if l>=3:
+		if l>=5:
 			l="Вывести такую породу займёт неоправданно много времени или это невозможно."
 			break
 		for i in range(len(table)):
@@ -80,7 +80,7 @@ def search(char):
 					tek=scrst(table[i],table[j])
 					tek['roditeli']=[i,j]
 					oz=ozenka(tek['h'],char)
-					if oz < 5:
+					if oz < 1:
 						table2.append(tek)
 					if oz<pogr:
 						tekm2=tek
@@ -116,12 +116,32 @@ m_choice = []
 fem_choice = []
 
 for i in data.vv():
-	m_choice.append(QRadioButton(f"Собака {i['ind']}"))
-	fem_choice.append(QRadioButton(f"Собака {i['ind']}"))
+	m_choice.append(QRadioButton(f"Собака {i['ind'] - 1}"))
+	fem_choice.append(QRadioButton(f"Собака {i['ind'] - 1}"))
 	ui.males_list.setItemWidget(QListWidgetItem(ui.males_list), m_choice[i['ind'] - 1])
 	ui.females_list.setItemWidget(QListWidgetItem(ui.females_list), fem_choice[i['ind'] - 1])
 
+all_dogs = []
+for i in data.vv():
+	btn = QPushButton(f"Собака {i['ind'] - 1}")
+	btn.clicked.connect(lambda: get_info(i['ind'] - 1))
+	all_dogs.append(btn)
+	ui.dogs_list.setItemWidget(QListWidgetItem(ui.dogs_list), all_dogs[i['ind'] - 1])
 
+def get_info(id):
+	text = f'''
+У этой собаки данные характеристики:
+Острота слуха - {int(data.vn(id)['h'][0] * 1000)} из 1000,
+Длина шерсти - {int(data.vn(id)['h'][1] * 1000)} из 1000,
+Размер хвоста - {int(data.vn(id)['h'][2] * 1000)} из 1000,
+Размер туловища - {int(data.vn(id)['h'][3] * 1000)} из 1000.
+	'''
+	msgBox = QMessageBox()
+	msgBox.setIcon(QMessageBox.Information)
+	msgBox.setText(text)
+	msgBox.setWindowTitle(f"Данные собаки {id}")
+	msgBox.setStandardButtons(QMessageBox.Ok)
+	msgBox.exec()
 
 def get_data():
 	ch = [ui.spinBox_first.value() / 1000, ui.spinBox_second.value() / 1000, ui.spinBox_third.value() / 1000, ui.spinBox_fourth.value() / 1000]
@@ -157,7 +177,7 @@ def get_child():
 	if dog1 == dog2:
 		msgBox = QMessageBox()
 		msgBox.setIcon(QMessageBox.Critical)
-		text = f'''Нельзя скрестить собаку саму с собой'''
+		text = f'''Нельзя скрещивать близких родственников!'''
 		msgBox.setText(text)
 		msgBox.setWindowTitle("Ошибка")
 		msgBox.setStandardButtons(QMessageBox.Ok)

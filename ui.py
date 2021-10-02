@@ -191,6 +191,9 @@ class Ui_MainWindow(object):
         self.title1 = QLabel(self.newDogByParents)
         self.title1.setObjectName(u"title1")
         self.title1.setGeometry(QRect(10, 0, 571, 61))
+#if QT_CONFIG(whatsthis)
+        self.title1.setWhatsThis(u"")
+#endif // QT_CONFIG(whatsthis)
         self.title1.setAlignment(Qt.AlignCenter)
         self.groupBox = QGroupBox(self.newDogByParents)
         self.groupBox.setObjectName(u"groupBox")
@@ -223,12 +226,16 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.newDogByParents, "")
         self.myDogs = QWidget()
         self.myDogs.setObjectName(u"myDogs")
+        self.myDogs.setStyleSheet(u"QPushButton {\n"
+"	border: none;\n"
+"    background-color: transparent;\n"
+"    outline: none;\n"
+"	font-size: 30px;\n"
+"}")
         self.dogs_list = QListWidget(self.myDogs)
         self.dogs_list.setObjectName(u"dogs_list")
         self.dogs_list.setGeometry(QRect(0, 0, 591, 371))
-        self.dogs_list.setStyleSheet(u"* {\n"
-"border: 2px black\n"
-"}")
+        self.dogs_list.setStyleSheet(u"")
         self.tabWidget.addTab(self.myDogs, "")
 
         self.retranslateUi(MainWindow)
